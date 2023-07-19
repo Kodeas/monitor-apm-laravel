@@ -1,0 +1,27 @@
+{
+    "name": "kodeas/monitor",
+    "description": "Laravel integration for monitor apm",
+    "authors": [
+        {
+            "name": "Kodeas"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Kodeas\\Monitor\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Kodeas\\Monitor\\MonitorServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "guzzlehttp/guzzle": "^7.0",
+        "illuminate/log": "^9.52",
+        "illuminate/http": "^9.52",
+        "illuminate/support": "^9.52"
+    }
+}
