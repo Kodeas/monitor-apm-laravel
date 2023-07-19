@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'key' => env("MONITOR_API_KEY"),
+
     'namespace' => 'App\\',
 
     'environment' => env('MONITOR_ENV', env('APP_ENV')),

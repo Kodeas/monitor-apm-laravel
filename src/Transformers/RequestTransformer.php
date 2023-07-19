@@ -24,7 +24,7 @@ class RequestTransformer
             'query_params' => $this->request->query(),
             'action' => optional($this->request->route())->getActionName(),
             'headers' => $this->request->headers->all(),
-            'json' => $this->request->isJson(),
+            'is_json' => $this->request->isJson(),
             'user' => null,
         ];
 

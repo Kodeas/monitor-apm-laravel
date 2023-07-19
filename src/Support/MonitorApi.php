@@ -11,14 +11,17 @@ use Throwable;
 class MonitorApi
 {
 
-    const _BASE_URL = 'http://192.168.0.1';
+    const _BASE_URL = 'http://monitor-apm/';
 
     private Client $client;
 
     public function __construct()
     {
         $this->client = new Client([
-            'base_url' => self::_BASE_URL
+            'base_uri' => self::_BASE_URL,
+            'headers' => [
+                'Authorization' => config('monitor.key')
+            ]
         ]);
     }
 
@@ -26,7 +29,7 @@ class MonitorApi
     {
         try {
             $this->client->post('/api/import', [
-                'body' => json_encode($data)
+                'json' => $data
             ]);
         } catch (ClientException|ServerException|Throwable $e) {
             Log::error($e);

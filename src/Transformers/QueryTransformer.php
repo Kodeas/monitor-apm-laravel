@@ -2,12 +2,14 @@
 
 namespace Kodeas\Monitor\Transformers;
 
+use DB;
+
 class QueryTransformer
 {
 
     public function run(): array
     {
-        $queryLog = \DB::getQueryLog();
+        $queryLog = DB::getQueryLog();
 
         $queries = [];
 
@@ -20,9 +22,11 @@ class QueryTransformer
             }
 
             $queries[] = [
-                'executed_sql' => config('monitor.executed_sql') ? $query : null,
+                'executed_sql' => config('monitor.loggers.executed_sql') ? $query : null,
                 'prepared_sql' => $queryInfo['query'],
-                'execution_time' => $queryInfo['time']
+                'execution_time' => $queryInfo['time'],
+                'created_at' => now(),
+                'updated_at' => now()
             ];
         }
 
