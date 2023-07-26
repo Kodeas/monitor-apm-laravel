@@ -1,5 +1,5 @@
 {
-    "name": "kodeas/monitor",
+    "name": "kodeas/monitor-apm-laravel",
     "description": "Laravel integration for monitor apm",
     "authors": [
         {
