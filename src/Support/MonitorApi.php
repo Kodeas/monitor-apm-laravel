@@ -11,7 +11,7 @@ use Throwable;
 class MonitorApi
 {
 
-    const _BASE_URL = 'http://monitor-apm/';
+    const _BASE_URL = 'https://apm.kodeas.com/';
 
     private Client $client;
 
