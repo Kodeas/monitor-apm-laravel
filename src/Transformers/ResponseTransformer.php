@@ -8,10 +8,10 @@ use Illuminate\Http\Response;
 
 class ResponseTransformer
 {
-    private Response|JsonResponse $response;
+    private $response;
     private Request $request;
 
-    public function __construct(Request $request, Response|JsonResponse $response)
+    public function __construct(Request $request, $response)
     {
         $this->response = $response;
         $this->request = $request;

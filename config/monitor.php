@@ -25,5 +25,14 @@ return [
         'user_fields' => [
             'id', 'name'
         ]
+    ],
+
+    'redacted_keys' => [
+        'password',
+        'cookie',
+        'authorization',
+        'php-auth-user',
+        'php-auth-pw',
+        'php-auth-digest',
     ]
 ];

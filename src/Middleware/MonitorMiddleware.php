@@ -30,10 +30,6 @@ class MonitorMiddleware
             return;
         }
 
-        if ($response instanceof RedirectResponse) {
-            return;
-        }
-        
         $notifyStages = config('monitor.notify_environments') ?: [];
 
         if (count($notifyStages)) {

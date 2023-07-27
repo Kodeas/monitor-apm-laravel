@@ -13,7 +13,7 @@ class MonitorApi
 
     const _BASE_URL = 'https://apm.kodeas.com/';
 
-    private Client $client;
+    private $client;
 
     public function __construct()
     {

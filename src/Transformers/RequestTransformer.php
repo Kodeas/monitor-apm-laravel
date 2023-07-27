@@ -18,7 +18,7 @@ class RequestTransformer
     {
         $data = [
             'method' => $this->request->method(),
-            'uri' => $this->request->getUri(),
+            'uri' => $this->request->route()->uri(),
             'path' => $this->request->path(),
             'request_data' => null,
             'request_headers' => $this->request->headers->all(),
@@ -30,7 +30,7 @@ class RequestTransformer
         ];
 
         if (config('monitor.loggers.request_data')) {
-            $data['request_data'] = $this->request->all();
+            $data['request_data'] = $this->cleanObject($this->request->all());
         }
 
         if (config('monitor.loggers.user')) {
@@ -43,5 +43,35 @@ class RequestTransformer
         }
 
         return $data;
+    }
+
+    public function cleanObject($obj)
+    {
+        if (is_null($obj)) {
+            return null;
+        }
+
+        if (is_array($obj)) {
+            $clean = [];
+
+            foreach ($obj as $key => $value) {
+                $clean[$key] = $this->isRedacted($key) ? '[FILTERED]' : $this->cleanObject($value);
+            }
+
+            return $clean;
+        }
+
+        return $obj;
+    }
+
+    private function isRedacted($key): bool
+    {
+        foreach (config('monitor.redacted_keys') as $redactedKey) {
+            if (strtolower($redactedKey) == strtolower($key)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
