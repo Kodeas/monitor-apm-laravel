@@ -26,6 +26,7 @@ class RequestTransformer
             'headers' => $this->request->headers->all(),
             'is_json' => $this->request->isJson(),
             'user' => null,
+            'user_id' => null,
         ];
 
         if (config('monitor.loggers.request_data')) {
@@ -37,6 +38,7 @@ class RequestTransformer
 
             if ($user) {
                 $data['user'] = $user->only(config('monitor.logger_details.user_fields'));
+                $data['user_id'] = $user->id;
             }
         }
 

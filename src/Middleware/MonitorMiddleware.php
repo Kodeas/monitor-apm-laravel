@@ -26,6 +26,12 @@ class MonitorMiddleware
 
     public function terminate(Request $request, $response): void
     {
+        if (count(config('monitor.notify_environments'))) {
+            if (!in_array(app()->environment(), config('monitor.notify_environments'))) {
+                return;
+            }
+        }
+
         if (!$request->route()) {
             return;
         }

@@ -7,6 +7,8 @@ return [
 
     'environment' => env('MONITOR_ENV', env('APP_ENV')),
 
+    'notify_environments' => empty(env('MONITOR_NOTIFY_ENVIRONMENTS')) ? null : explode(',', str_replace(' ', '', env('MONITOR_NOTIFY_ENVIRONMENTS'))),
+
     'loggers' => [
         'requests' => true,
 
